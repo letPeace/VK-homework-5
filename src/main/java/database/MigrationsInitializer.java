@@ -8,11 +8,15 @@ public class MigrationsInitializer {
     private static final @NotNull JDBCCredentials CREDENTIALS = JDBCCredentials.DEFAULT_CREDENTIALS;
 
     public static void initialize() {
+        initialize(CREDENTIALS);
+    }
+
+    public static void initialize(@NotNull JDBCCredentials jdbcCredentials){
         final Flyway flyway = Flyway.configure()
                 .dataSource(
-                        CREDENTIALS.url(),
-                        CREDENTIALS.login(),
-                        CREDENTIALS.password()
+                        jdbcCredentials.url(),
+                        jdbcCredentials.login(),
+                        jdbcCredentials.password()
                 )
                 .cleanDisabled(false)
                 .locations("migrations")

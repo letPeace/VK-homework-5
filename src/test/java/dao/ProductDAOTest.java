@@ -1,7 +1,8 @@
 package dao;
 
 import database.JDBCCredentials;
-import database.MigrationsInitializer;
+import database.JDBCCredentialsTest;
+import database.MigrationsInitializerTest;
 import entities.Product;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +22,7 @@ class ProductDAOTest {
 
     static {
         try {
-            connection = JDBCCredentials.getDefaultConnection();
+            connection = JDBCCredentialsTest.getDefaultConnection();
             productDAO = new ProductDAO(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -30,7 +31,7 @@ class ProductDAOTest {
 
     @BeforeEach
     void initializeDB(){
-        MigrationsInitializer.initialize();
+        MigrationsInitializerTest.initialize();
     }
 
     @Test

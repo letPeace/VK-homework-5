@@ -7,18 +7,15 @@ import utils.Date;
 import utils.Pair;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Application {
 
-    private static final @NotNull JDBCCredentials CREDENTIALS = JDBCCredentials.DEFAULT_CREDENTIALS;
-
     public static void main(@NotNull String[] args) {
         MigrationsInitializer.initialize();
-        try (var connection = DriverManager.getConnection(CREDENTIALS.url(), CREDENTIALS.login(), CREDENTIALS.password())) {
+        try (var connection = JDBCCredentials.getDefaultConnection()) {
             /* 1 */
             query1(connection);
             /* 2 */

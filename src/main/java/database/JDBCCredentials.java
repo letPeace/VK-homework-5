@@ -18,10 +18,14 @@ public record JDBCCredentials(@NotNull String prefix, @NotNull String host, @Not
     );
 
     public static @NotNull Connection getDefaultConnection() throws SQLException {
+        return getDefaultConnection(DEFAULT_CREDENTIALS);
+    }
+
+    public static @NotNull Connection getDefaultConnection(@NotNull JDBCCredentials jdbcCredentials) throws SQLException {
         return DriverManager.getConnection(
-                DEFAULT_CREDENTIALS.url(),
-                DEFAULT_CREDENTIALS.login(),
-                DEFAULT_CREDENTIALS.password()
+                jdbcCredentials.url(),
+                jdbcCredentials.login(),
+                jdbcCredentials.password()
         );
     }
 

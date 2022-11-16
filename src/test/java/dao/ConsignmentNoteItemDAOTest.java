@@ -1,7 +1,8 @@
 package dao;
 
 import database.JDBCCredentials;
-import database.MigrationsInitializer;
+import database.JDBCCredentialsTest;
+import database.MigrationsInitializerTest;
 import entities.ConsignmentNote;
 import entities.ConsignmentNoteItem;
 import entities.Organization;
@@ -24,7 +25,7 @@ class ConsignmentNoteItemDAOTest {
 
     static {
         try {
-            connection = JDBCCredentials.getDefaultConnection();
+            connection = JDBCCredentialsTest.getDefaultConnection();
             consignmentNoteItemDAO = new ConsignmentNoteItemDAO(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -33,7 +34,7 @@ class ConsignmentNoteItemDAOTest {
 
     @BeforeEach
     void initializeDB(){
-        MigrationsInitializer.initialize();
+        MigrationsInitializerTest.initialize();
     }
 
     @Test
